@@ -1,0 +1,78 @@
+/**
+ * Global Styles & Design Tokens
+ * Enterprise-level styling with consistent animations and effects
+ */
+
+/* Smooth scrolling for entire application */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base body styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, Helvetica, sans-serif;
+  background-color: #0f172a;
+  color: #ffffff;
+  line-height: 1.6;
+  min-height: 100vh;
+  scroll-padding-top: 4rem;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  scroll-margin-top: 4rem;
+  min-height: calc(100vh - 4rem);
+}
+
+/* Selection colors */
+::selection {
+  background-color: #06b6d4;
+  color: #0f172a;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #06b6d4;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a855f7;
+}
+
+/* Smooth transitions for all interactive elements */
+button, a, input, textarea {
+  transition: all 150ms ease-out;
+}
+
+/* Focus visible styles for accessibility */
+:focus-visible {
+  outline: 2px solid #06b6d4;
+  outline-offset: 2px;
+}
+
+/* Gradient text utility class */
+.gradient-text {
+  background: linear-gradient(to right, #06b6d4, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow effect utility class */
+.glow-effect {
+  box-shadow: 0 20px 60px -25px rgba(6, 182, 212, 0.8);
+}
