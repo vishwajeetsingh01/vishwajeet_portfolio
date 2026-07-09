@@ -10,6 +10,28 @@ export default function Home() {
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
   const [displayedDescription, setDisplayedDescription] = useState(ROLE_DESCRIPTIONS[0] || PROFILE.bio);
 
+  const handleDownloadResume = async () => {
+    try {
+      const response = await fetch('/resume.pdf');
+      if (!response.ok) {
+        throw new Error('Failed to fetch resume');
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const downloadLink = document.createElement('a');
+      downloadLink.href = url;
+      downloadLink.download = 'Vishwajeet_Singh_Resume.pdf';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      downloadLink.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Resume download failed:', error);
+      window.location.href = '/resume.pdf';
+    }
+  };
+
   // Subtitle typing animation effect - loops through phrases continuously
   useEffect(() => {
     if (!isVisible) return;
@@ -82,13 +104,13 @@ export default function Home() {
         <div 
           className={`space-x-4 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
         >
-          <a
-            href="/resume.pdf"
-            download="Vishwajeet_Singh_Resume.pdf"
+          <button
+            type="button"
+            onClick={handleDownloadResume}
             className="bg-cyan-500 hover:bg-cyan-600 px-6 py-3 rounded-lg font-semibold inline-block"
           >
             Download Resume
-          </a>
+          </button>
 
           <a
             href="#contact"
