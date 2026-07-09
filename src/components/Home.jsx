@@ -10,13 +10,6 @@ export default function Home() {
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
   const [displayedDescription, setDisplayedDescription] = useState(ROLE_DESCRIPTIONS[0] || PROFILE.bio);
 
-  const handleResumeDownload = () => {
-    const resumeLink = document.createElement('a');
-    resumeLink.href = '/resume.pdf';
-    resumeLink.download = 'Vishwajeet_Singh_Resume.pdf';
-    resumeLink.click();
-  };
-
   // Subtitle typing animation effect - loops through phrases continuously
   useEffect(() => {
     if (!isVisible) return;
@@ -89,12 +82,13 @@ export default function Home() {
         <div 
           className={`space-x-4 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
         >
-          <button
-            onClick={handleResumeDownload}
+          <a
+            href="/resume.pdf"
+            download="Vishwajeet_Singh_Resume.pdf"
             className="bg-cyan-500 hover:bg-cyan-600 px-6 py-3 rounded-lg font-semibold inline-block"
           >
             Download Resume
-          </button>
+          </a>
 
           <a
             href="#contact"

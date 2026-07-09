@@ -12,6 +12,14 @@ This portfolio follows **enterprise software engineering principles**:
 - **Production Ready** - Optimized build, linting, and code quality checks
 - **Maintainability** - Easy to update, extend, and debug
 
+## 🚀 Live Demo
+
+View the deployed portfolio here:
+
+[https://vishwajeet-portfolio-sigma.vercel.app/](https://vishwajeet-portfolio-sigma.vercel.app/)
+
+![Homepage screenshot](./screenshots/homepage.png)
+
 ## 🚀 Quick Start
 
 ### Prerequisites
