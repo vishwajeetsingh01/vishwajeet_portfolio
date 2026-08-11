@@ -76,7 +76,7 @@ function App() {
               className="group relative flex items-center justify-center"
               aria-label={nav.label}
             >
-              <span className={`block h-3 w-3 rounded-full transition-colors ${isActive ? 'bg-cyan-400 shadow-[0_0_0_8px_rgba(56,189,248,0.15)]' : 'bg-slate-700 group-hover:bg-cyan-400'}`} />
+              <span className={`block h-3 w-3 rounded-full transition-colors ${isActive ? 'bg-cyan-400 shadow-[0_0_0_8px_rgba(56,189,248,0.15)] active-dot-glow' : 'bg-slate-700 group-hover:bg-cyan-400'}`} />
               <span className="pointer-events-none absolute right-full mr-3 hidden whitespace-nowrap rounded-full border border-slate-700 bg-slate-950 px-3 py-1 text-xs text-gray-300 opacity-0 transition duration-200 group-hover:block group-hover:opacity-100">
                 {nav.label}
               </span>
