@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { NAVIGATION } from './constants/portfolio';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
@@ -69,6 +70,24 @@ function App() {
         <div className="absolute right-1/4 top-16 h-72 w-72 rounded-full bg-violet-500 opacity-15 blur-3xl animate-blob animation-delay-2000" />
       </div>
       <Navbar theme={theme} onToggleTheme={toggleTheme} activeSection={activeSection} />
+      <div className="hidden xl:flex z-40 flex-col items-center gap-4" style={{ position: 'fixed', right: '1.5rem', top: '50%', transform: 'translateY(-50%)' }}>
+        {NAVIGATION.map((nav) => {
+          const isActive = activeSection === nav.id;
+          return (
+            <a
+              key={nav.id}
+              href={`#${nav.id}`}
+              className="group relative flex items-center justify-center"
+              aria-label={nav.label}
+            >
+              <span className={`block h-3 w-3 rounded-full transition-colors ${isActive ? 'bg-cyan-400 shadow-[0_0_0_8px_rgba(56,189,248,0.15)]' : 'bg-slate-700 group-hover:bg-cyan-400'}`} />
+              <span className="pointer-events-none absolute right-full mr-3 hidden whitespace-nowrap rounded-full border border-slate-700 bg-slate-950 px-3 py-1 text-xs text-gray-300 opacity-0 transition duration-200 group-hover:block group-hover:opacity-100">
+                {nav.label}
+              </span>
+            </a>
+          );
+        })}
+      </div>
       <Home />
       <About />
       <Skills />
