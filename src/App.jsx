@@ -15,11 +15,37 @@ import WhatsAppButton from './components/WhatsAppButton';
 
 function App() {
   const [theme, setTheme] = useState('dark');
+  const [activeSection, setActiveSection] = useState('home');
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const stored = window.localStorage.getItem('portfolio-theme');
     const preferred = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     setTheme(preferred);
+  }, []);
+
+  useEffect(() => {
+    const sectionIds = ['home', 'about', 'skills', 'projects', 'experience', 'blog', 'testimonials', 'education', 'contact'];
+
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(documentHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / documentHeight) * 100)) : 0);
+
+      let current = 'home';
+      sectionIds.forEach((id) => {
+        const element = document.getElementById(id);
+        if (!element) return;
+        const top = element.getBoundingClientRect().top;
+        if (top <= 120) current = id;
+      });
+      setActiveSection(current);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
@@ -31,8 +57,18 @@ function App() {
   const toggleTheme = () => setTheme((current) => (current === 'dark' ? 'light' : 'dark'));
 
   return (
-    <div className="theme-transition bg-slate-950 text-white">
-      <Navbar theme={theme} onToggleTheme={toggleTheme} />
+    <div className="theme-transition bg-slate-950 text-white relative overflow-hidden">
+      <div className="pointer-events-none fixed inset-x-0 top-16 h-1 z-50 bg-slate-950">
+        <div
+          className="h-full bg-gradient-to-r from-cyan-400 via-violet-400 to-sky-400 transition-[width] duration-150"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-72 overflow-hidden">
+        <div className="absolute left-1/4 top-10 h-72 w-72 rounded-full bg-cyan-400 opacity-20 blur-3xl animate-blob" />
+        <div className="absolute right-1/4 top-16 h-72 w-72 rounded-full bg-violet-500 opacity-15 blur-3xl animate-blob animation-delay-2000" />
+      </div>
+      <Navbar theme={theme} onToggleTheme={toggleTheme} activeSection={activeSection} />
       <Home />
       <About />
       <Skills />

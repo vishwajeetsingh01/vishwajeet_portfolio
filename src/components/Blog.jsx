@@ -39,7 +39,7 @@ export default function Blog() {
 
         <div className="grid gap-8 md:grid-cols-3">
           {posts.map((post) => (
-            <article key={post.title} className="group rounded-3xl border border-slate-800 bg-slate-900 p-8 transition hover:border-cyan-400 hover:bg-slate-800">
+            <article key={post.title} className="group rounded-3xl border border-slate-800 bg-slate-900 p-8 transition duration-200 hover:-translate-y-1 hover:border-cyan-400 hover:bg-slate-800">
               <div className="mb-4 flex items-center justify-between text-sm text-cyan-300 uppercase tracking-[0.3em] font-semibold">
                 <span>{post.date}</span>
                 <span>{post.tags.length} tags</span>

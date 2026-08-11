@@ -2,7 +2,7 @@ import { useState } from 'react';
 import profilePhoto from '../assets/profile.jpg';
 import { NAVIGATION } from '../constants/portfolio';
 
-export default function Navbar({ theme, onToggleTheme }) {
+export default function Navbar({ theme, onToggleTheme, activeSection }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -20,15 +20,18 @@ export default function Navbar({ theme, onToggleTheme }) {
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center space-x-6">
-          {NAVIGATION.map((nav) => (
-            <a
-              key={nav.id}
-              href={`#${nav.id}`}
-              className="hover:text-cyan-400 transition-colors text-sm md:text-base py-3 px-2 rounded-lg"
-            >
-              {nav.label}
-            </a>
-          ))}
+          {NAVIGATION.map((nav) => {
+            const isActive = activeSection === nav.id;
+            return (
+              <a
+                key={nav.id}
+                href={`#${nav.id}`}
+                className={`transition-colors text-sm md:text-base py-3 px-2 rounded-lg ${isActive ? 'text-cyan-300 underline underline-offset-4 decoration-cyan-400' : 'hover:text-cyan-400'}`}
+              >
+                {nav.label}
+              </a>
+            );
+          })}
         </div>
 
         <div className="flex items-center gap-3">
@@ -68,16 +71,19 @@ export default function Navbar({ theme, onToggleTheme }) {
       <div className={`md:hidden ${open ? 'block' : 'hidden'}`}>
         <div className="bg-slate-900/95 backdrop-blur-sm border-t border-slate-800">
           <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-3">
-            {NAVIGATION.map((nav) => (
-              <a
-                key={nav.id}
-                href={`#${nav.id}`}
-                onClick={() => setOpen(false)}
-                className="block text-left text-lg text-gray-200 hover:text-cyan-400 py-4 px-3 rounded-lg"
-              >
-                {nav.label}
-              </a>
-            ))}
+            {NAVIGATION.map((nav) => {
+              const isActive = activeSection === nav.id;
+              return (
+                <a
+                  key={nav.id}
+                  href={`#${nav.id}`}
+                  onClick={() => setOpen(false)}
+                  className={`block text-left text-lg py-4 px-3 rounded-lg ${isActive ? 'text-cyan-300 underline underline-offset-4 decoration-cyan-400' : 'text-gray-200 hover:text-cyan-400'}`}
+                >
+                  {nav.label}
+                </a>
+              );
+            })}
             <button
               type="button"
               onClick={() => {
