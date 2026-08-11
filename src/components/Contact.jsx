@@ -11,7 +11,7 @@ export default function Contact() {
           Let's connect and discuss AI, Analytics, and innovative projects.
         </p>
 
-        <div className="w-full mx-auto max-w-2xl border border-cyan-400 rounded-3xl bg-slate-900 p-8 md:p-10 space-y-8 text-lg">
+        <div className="w-full mx-auto max-w-xl border border-cyan-400 rounded-3xl bg-slate-900 p-8 md:p-10 space-y-8 text-lg">
           <div className="flex flex-col gap-6 md:gap-8">
             <a
               href="mailto:vishwajeetsinghmnnit@gmail.com"

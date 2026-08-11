@@ -59,7 +59,7 @@ export default function Projects() {
               href={project.link}
               target="_blank"
               rel="noreferrer"
-              className="group block bg-slate-800 p-8 rounded-3xl border border-slate-700 shadow-[0_20px_50px_-20px_rgba(15,23,42,0.45),0_-10px_30px_-25px_rgba(15,23,42,0.2)] transition transform duration-300 ease-out hover:scale-105 hover:bg-slate-700 hover:border-cyan-400 hover:shadow-[0_20px_60px_-25px_rgba(6,182,212,0.8),0_-10px_40px_-30px_rgba(6,182,212,0.25)]"
+              className="group block bg-slate-800 p-8 rounded-3xl border border-slate-700 shadow-[0_20px_50px_-20px_rgba(15,23,42,0.45),0_-10px_30px_-25px_rgba(15,23,42,0.2)] transition transform duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:bg-slate-700 hover:border-cyan-400 hover:shadow-[0_20px_60px_-25px_rgba(6,182,212,0.8),0_-10px_40px_-30px_rgba(6,182,212,0.25)]"
             >
               <h3 className="text-2xl font-bold mb-4 flex items-center gap-3 group-hover:text-cyan-400">
                 <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-cyan-500 text-slate-950">
