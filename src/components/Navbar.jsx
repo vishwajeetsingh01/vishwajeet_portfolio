@@ -13,6 +13,7 @@ export default function Navbar({ theme, onToggleTheme }) {
             src={profilePhoto}
             alt="Vishwajeet Singh"
             className="w-10 h-10 rounded-full border-2 border-cyan-400 object-cover"
+            decoding="async"
           />
           <span className="text-base font-bold text-cyan-400 inline-block md:text-lg">Vishwajeet Singh</span>
         </a>
