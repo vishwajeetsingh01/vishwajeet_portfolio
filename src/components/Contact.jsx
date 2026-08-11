@@ -1,7 +1,7 @@
 export default function Contact() {
   return (
-    <section id="contact" className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-6 bg-slate-950">
-      <div className="max-w-4xl mx-auto text-center py-24">
+    <section id="contact" className="w-full flex min-h-[calc(100vh-4rem)] items-center justify-center px-6 bg-slate-950">
+      <div className="w-full max-w-4xl mx-auto text-center py-12 md:py-24">
 
         <h2 className="text-4xl font-bold mb-8 text-cyan-400">
           Contact Me
@@ -11,8 +11,8 @@ export default function Contact() {
           Let's connect and discuss AI, Analytics, and innovative projects.
         </p>
 
-        <div className="mx-auto max-w-2xl border border-cyan-400 rounded-3xl bg-slate-900 p-10 space-y-8 text-lg">
-          <div className="flex flex-col gap-8">
+        <div className="w-full mx-auto max-w-2xl border border-cyan-400 rounded-3xl bg-slate-900 p-8 md:p-10 space-y-8 text-lg">
+          <div className="flex flex-col gap-6 md:gap-8">
             <a
               href="mailto:vishwajeetsinghmnnit@gmail.com"
               className="inline-flex items-center justify-center mx-auto text-gray-300 hover:text-cyan-200 transition"
