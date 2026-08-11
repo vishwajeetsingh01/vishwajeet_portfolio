@@ -66,7 +66,7 @@ function App() {
         />
       </div>
       <Navbar theme={theme} onToggleTheme={toggleTheme} activeSection={activeSection} />
-      <div className="hidden xl:flex z-40 flex-col items-center gap-4" style={{ position: 'fixed', right: '1.5rem', top: '50%', transform: 'translateY(-50%)' }}>
+      <div className="hidden xl:flex z-40 flex-col items-center gap-4" style={{ position: 'fixed', right: '3.5rem', top: '50%', transform: 'translateY(-50%)' }}>
         {NAVIGATION.map((nav) => {
           const isActive = activeSection === nav.id;
           return (
