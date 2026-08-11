@@ -148,6 +148,22 @@ button, a, input, textarea {
 }
 
 /* Pulsing scale animation used for hover effects on floating icons */
+@keyframes whatsappPulse {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.18); }
+  70% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes whatsappIconPulse {
+  0%, 100% { transform: scale(0.95); }
+  50% { transform: scale(1.08); }
+}
+
+.whatsapp-pulse {
+  animation: whatsappIconPulse 2.2s ease-in-out infinite;
+}
+
 @keyframes activeDotPulse {
   0% { transform: scale(0.85); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.3); }
   60% { transform: scale(1.25); box-shadow: 0 0 0 10px rgba(56, 189, 248, 0.12); }
@@ -175,4 +191,5 @@ button, a, input, textarea {
     touch-action: manipulation;
   }
 }
+
 
