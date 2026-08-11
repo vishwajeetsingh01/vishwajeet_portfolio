@@ -60,7 +60,7 @@ Test the production build locally:
 npm run preview
 ```
 
-### Lint Code
+<!-- ### Lint Code
 Check code quality with ESLint:
 ```bash
 npm run lint
@@ -73,7 +73,7 @@ If you want to deploy from local machine:
 ```bash
 npm i -g vercel
 vercel --prod
-```
+``` -->
 
 ## 🛠️ Tech Stack
 
