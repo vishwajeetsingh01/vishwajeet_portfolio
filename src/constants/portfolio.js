@@ -235,6 +235,7 @@ export const NAVIGATION = [
   { label: 'Skills', id: 'skills' },
   { label: 'Projects', id: 'projects' },
   { label: 'Experience', id: 'experience' },
+  { label: 'Blog', id: 'blog' },
   { label: 'Education', id: 'education' },
   { label: 'Contact', id: 'contact' },
 ];
