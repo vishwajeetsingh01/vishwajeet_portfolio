@@ -4,58 +4,144 @@ export default function Contact() {
   const { ref, isVisible } = useIntersectionObserver();
 
   return (
-    <section id="contact" className="w-full flex min-h-[calc(100vh-4rem)] items-center justify-center px-6 bg-slate-950">
-      <div ref={ref} className={`w-full max-w-4xl mx-auto text-center py-12 md:py-24 transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+    <section id="contact" className="relative overflow-hidden bg-slate-950 px-4 py-24 sm:px-6 lg:px-8">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-cyan-500/20 to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-16 hidden h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl lg:block" />
 
-        <h2 className="text-4xl font-bold mb-8 text-cyan-400">
-          Contact Me
-        </h2>
+      <div ref={ref} className={`relative mx-auto w-full max-w-7xl transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className="text-center mb-10 px-2 sm:px-0">
+          <h2 className="text-4xl font-bold text-cyan-400">
+            Contact
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-gray-400 text-base leading-7 sm:text-lg">
+            Reach out for AI, analytics, or automation work. I’m happy to discuss your requirements, share my experience, and support practical project delivery.
+          </p>
+        </div>
 
-        <p className="text-gray-300 text-lg mb-8">
-          Let's connect and discuss AI, Analytics, and innovative projects.
-        </p>
+        <div className="grid gap-6 lg:grid-cols-[1.7fr_1fr]">
+          <div className="rounded-[32px] border border-slate-800 bg-slate-900 p-6 sm:p-8 md:p-10 shadow-[0_30px_90px_-40px_rgba(15,23,42,0.9)] min-w-0">
+            <div className="mb-8">
+              <span className="inline-flex rounded-full bg-cyan-500/10 px-4 py-2 text-xs uppercase tracking-[0.3em] text-cyan-300 font-semibold mb-4">
+                Send a message
+              </span>
+              <h3 className="text-3xl font-semibold text-white mb-3">Quick contact form</h3>
+              <p className="text-gray-400 leading-7">
+                Share your project details and I’ll reply with tailored next steps. Use this form to send a direct message. If you prefer, you can also email me or chat directly over whatsapp.
+              </p>
+            </div>
 
-        <div className="w-full mx-auto max-w-xl border border-cyan-400 rounded-3xl bg-slate-900 p-8 md:p-10 space-y-8 text-lg">
-          <div className="flex flex-col gap-6 md:gap-8">
-            <a
-              href="mailto:vishwajeetsinghmnnit@gmail.com"
-              className="inline-flex items-center justify-center mx-auto text-gray-300 hover:text-cyan-200 transition"
+            <form
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              className="space-y-5"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-cyan-400 mr-2">
-                <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" />
-                <path d="m22 6-10 8.5L2 6" />
-              </svg>
-              <span className="font-medium">vishwajeetsinghmnnit@gmail.com</span>
-            </a>
+              <input type="hidden" name="form-name" value="contact" />
+              <input type="hidden" name="bot-field" />
 
-            <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-              <a
-                href="https://github.com/vishwajeetsingh01"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 whitespace-nowrap border border-cyan-400 hover:bg-cyan-400 hover:text-black text-white font-semibold px-6 py-3 rounded-lg transition"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 mr-1">
-                  <path fillRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.419 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.603-3.369-1.342-3.369-1.342-.454-1.157-1.11-1.465-1.11-1.465-.908-.62.069-.607.069-.607 1.003.071 1.531 1.031 1.531 1.031.892 1.528 2.341 1.087 2.91.832.091-.647.35-1.087.637-1.337-2.22-.253-4.555-1.11-4.555-4.942 0-1.091.39-1.984 1.03-2.682-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.338 1.909-1.294 2.748-1.025 2.748-1.025.545 1.377.202 2.394.1 2.647.64.698 1.028 1.591 1.028 2.682 0 3.842-2.338 4.687-4.566 4.935.36.31.681.92.681 1.855 0 1.338-.012 2.419-.012 2.747 0 .269.18.58.688.481C19.138 20.162 22 16.419 22 12c0-5.523-4.477-10-10-10Z" clipRule="evenodd" />
-                </svg>
-                GitHub
-              </a>
+              <label className="block text-sm text-gray-300">
+                <span className="mb-2 inline-block text-sm font-medium">Name</span>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  className="w-full rounded-[24px] border border-slate-700 bg-slate-950 px-4 py-3 text-white placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
+                  placeholder="Your name"
+                />
+              </label>
 
-              <a
-                href="https://www.linkedin.com/in/vishwajeetsingh-"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 whitespace-nowrap border border-cyan-400 hover:bg-cyan-400 hover:text-black text-white font-semibold px-6 py-3 rounded-lg transition"
+              <label className="block text-sm text-gray-300">
+                <span className="mb-2 inline-block text-sm font-medium">Email</span>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  className="w-full rounded-[24px] border border-slate-700 bg-slate-950 px-4 py-3 text-white placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
+                  placeholder="you@example.com"
+                />
+              </label>
+
+              <label className="block text-sm text-gray-300">
+                <span className="mb-2 inline-block text-sm font-medium">Message</span>
+                <textarea
+                  name="message"
+                  required
+                  rows="5"
+                  className="w-full rounded-[24px] border border-slate-700 bg-slate-950 px-4 py-3 text-white placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
+                  placeholder="Tell me about your project, timeline, or goals..."
+                />
+              </label>
+
+              <button
+                type="submit"
+                className="w-full rounded-[24px] bg-cyan-500 px-6 py-4 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 mr-1">
-                  <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5ZM0 8.5H5V24H0V8.5ZM7.5 8.5H12.4V10.8H12.5C13.2 9.608 14.85 8.402 17.2 8.402 21.65 8.402 22 11.5 22 15.5V24H17V16.6C17 14.5 16.55 12.8 14.2 12.8 11.85 12.8 11.4 14.5 11.4 16.4V24H7.5V8.5Z" />
-                </svg>
-                LinkedIn
-              </a>
+                Send message
+              </button>
+            </form>
+          </div>
+
+          <div className="space-y-6 min-w-0 w-full">
+            <div className="rounded-[32px] min-w-0 border border-slate-800 bg-slate-900 p-6 sm:p-8 md:p-10 shadow-[0_30px_90px_-40px_rgba(15,23,42,0.9)]">
+              <p className="text-sm uppercase tracking-[0.3em] text-cyan-400 mb-4">More ways to connect</p>
+              <h3 className="text-3xl font-semibold text-white mb-6">Contact</h3>
+
+              <div className="space-y-4">
+                <a
+                  href="mailto:vishwajeetsinghmnnit@gmail.com"
+                  className="group flex items-center gap-3 rounded-[24px] border border-slate-700 bg-slate-950 p-4 transition hover:border-cyan-400"
+                >
+                  <span className="inline-flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-cyan-500/10 text-cyan-300 text-lg font-semibold">
+                    @
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-sm uppercase tracking-[0.2em] text-cyan-300">Email</p>
+                    <p className="text-base font-semibold text-white truncate">vishwajeetsinghmnnit@gmail.com</p>
+                  </div>
+                </a>
+
+                <a
+                  href="/resume.pdf"
+                  download
+                  className="group flex items-start gap-4 rounded-[24px] border border-slate-700 bg-slate-950 p-4 transition hover:border-cyan-400"
+                >
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-500/10 text-cyan-300 text-lg font-semibold">
+                    ↓
+                  </span>
+                  <div>
+                    <p className="text-sm uppercase tracking-[0.2em] text-cyan-300">Resume</p>
+                    <p className="text-base font-semibold text-white">Download my resume</p>
+                  </div>
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/vishwajeetsingh-"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-start gap-4 rounded-[24px] border border-slate-700 bg-slate-950 p-4 transition hover:border-cyan-400"
+                >
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-500/10 text-cyan-300 text-lg font-semibold">
+                    in
+                  </span>
+                  <div>
+                    <p className="text-sm uppercase tracking-[0.2em] text-cyan-300">LinkedIn</p>
+                    <p className="text-base font-semibold text-white">Connect on LinkedIn</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <div className="rounded-[32px] border border-slate-800 bg-slate-900 p-8 md:p-10 shadow-[0_30px_90px_-40px_rgba(15,23,42,0.9)]">
+              <p className="text-sm uppercase tracking-[0.3em] text-cyan-400 mb-4">Why reach out?</p>
+              <ul className="space-y-4 text-gray-400 text-sm leading-7">
+                <li className="rounded-3xl border border-slate-700 bg-slate-950 p-4">AI and analytics solutions that drive measurable value.</li>
+                <li className="rounded-3xl border border-slate-700 bg-slate-950 p-4">Data engineering and reporting work built for reliability.</li>
+                <li className="rounded-3xl border border-slate-700 bg-slate-950 p-4">Fast replies, clear project scope, and practical delivery.</li>
+              </ul>
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );
