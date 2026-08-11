@@ -84,16 +84,6 @@ export default function Navbar({ theme, onToggleTheme, activeSection }) {
                 </a>
               );
             })}
-            <button
-              type="button"
-              onClick={() => {
-                onToggleTheme();
-                setOpen(false);
-              }}
-              className="mt-3 inline-flex items-center justify-center gap-2 rounded-2xl border border-cyan-400 px-4 py-3 text-gray-200 hover:bg-slate-800 hover:text-cyan-300"
-            >
-              {theme === 'dark' ? 'Light mode' : 'Dark mode'}
-            </button>
           </div>
         </div>
       </div>
