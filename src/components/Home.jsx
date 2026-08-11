@@ -102,19 +102,19 @@ export default function Home() {
         </p>
 
         <div 
-          className={`space-x-4 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+          className={`flex flex-col items-center gap-4 md:flex-row md:justify-center transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
         >
           <button
             type="button"
             onClick={handleDownloadResume}
-            className="bg-cyan-500 hover:bg-cyan-600 px-6 py-3 rounded-lg font-semibold inline-block"
+            className="bg-cyan-500 hover:bg-cyan-600 px-7 py-4 rounded-2xl font-semibold inline-block min-w-[160px]"
           >
             Download Resume
           </button>
 
           <a
             href="#contact"
-            className="border border-cyan-400 px-6 py-3 rounded-lg hover:bg-cyan-400 hover:text-black inline-block"
+            className="border border-cyan-400 px-7 py-4 rounded-2xl hover:bg-cyan-400 hover:text-black inline-block min-w-[160px]"
           >
             Contact Me
           </a>

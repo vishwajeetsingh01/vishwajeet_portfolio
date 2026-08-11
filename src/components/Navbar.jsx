@@ -6,7 +6,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed w-full bg-slate-900 shadow-lg z-50">
+    <nav className="fixed inset-x-0 top-0 bg-slate-950/95 backdrop-blur-sm border-b border-slate-800 shadow-lg z-50">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <a href="#home" className="flex items-center gap-2">
           <img
@@ -23,7 +23,7 @@ export default function Navbar() {
             <a
               key={nav.id}
               href={`#${nav.id}`}
-              className="hover:text-cyan-400 transition-colors text-sm md:text-base"
+              className="hover:text-cyan-400 transition-colors text-sm md:text-base py-3 px-2 rounded-lg"
             >
               {nav.label}
             </a>
@@ -35,7 +35,7 @@ export default function Navbar() {
           <button
             aria-label="Toggle navigation"
             onClick={() => setOpen((v) => !v)}
-            className="p-2 rounded-md text-gray-200 hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+            className="p-3 rounded-md text-gray-200 hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
           >
             <svg className={`w-6 h-6 transition-transform ${open ? 'rotate-90' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               {open ? (
@@ -57,7 +57,7 @@ export default function Navbar() {
                 key={nav.id}
                 href={`#${nav.id}`}
                 onClick={() => setOpen(false)}
-                className="block text-left text-lg text-gray-200 hover:text-cyan-400 py-2"
+                className="block text-left text-lg text-gray-200 hover:text-cyan-400 py-4 px-3 rounded-lg"
               >
                 {nav.label}
               </a>

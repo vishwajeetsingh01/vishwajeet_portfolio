@@ -32,7 +32,7 @@ export default function ScrollToTop() {
       aria-label="Scroll to top"
       onClick={handleClick}
       style={style}
-      className={`fixed w-10 h-10 rounded-md bg-gray-400 text-slate-950 flex items-center justify-center shadow-md transition-all duration-200 ${visible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+      className={`fixed w-12 h-12 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-xl transition-transform duration-200 ${visible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none translate-y-4'}`}
     >
       <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M6 14l6-6 6 6" />

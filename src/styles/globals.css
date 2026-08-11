@@ -85,3 +85,19 @@ button, a, input, textarea {
   100% { transform: scale(1); }
 }
 
+@media (max-width: 768px) {
+  section {
+    min-height: auto;
+    padding-top: 4.5rem;
+  }
+
+  button,
+  a,
+  input,
+  textarea {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+  }
+}
+
