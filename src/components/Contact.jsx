@@ -1,7 +1,39 @@
+import { useState, useRef } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
   const { ref, isVisible } = useIntersectionObserver();
+  const formRef = useRef(null);
+  const [statusMessage, setStatusMessage] = useState('');
+  const [isSending, setIsSending] = useState(false);
+
+  const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_contact';
+  const contactTemplateID = 'template_contact_form';
+  const autoReplyTemplateID = 'template_auto_reply';
+  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'KEYABu-HLotFE_6do';
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!serviceID || !contactTemplateID || !autoReplyTemplateID || !publicKey) {
+      setStatusMessage('EmailJS is not configured yet. Please provide the required keys.');
+      return;
+    }
+    setIsSending(true);
+    setStatusMessage('Sending message...');
+
+    try {
+      await emailjs.sendForm(serviceID, contactTemplateID, formRef.current, publicKey);
+      await emailjs.sendForm(serviceID, autoReplyTemplateID, formRef.current, publicKey);
+      setStatusMessage('Message sent successfully! I will reply soon.');
+      formRef.current.reset();
+    } catch (error) {
+      console.error('EmailJS send error:', error);
+      setStatusMessage('Something went wrong. Please try again later.');
+    } finally {
+      setIsSending(false);
+    }
+  };
 
   return (
     <section id="contact" className="relative overflow-hidden bg-slate-950 px-4 py-24 sm:px-6 lg:px-8">
@@ -24,22 +56,17 @@ export default function Contact() {
               <span className="inline-flex rounded-full bg-cyan-500/10 px-4 py-2 text-xs uppercase tracking-[0.3em] text-cyan-300 font-semibold mb-4">
                 Send a message
               </span>
-              <h3 className="text-3xl font-semibold text-white mb-3">Quick contact form</h3>
+              <h3 className="text-3xl font-semibold text-white mb-3">Contact form</h3>
               <p className="text-gray-400 leading-7">
                 Share your project details and I’ll reply with tailored next steps. Use this form to send a direct message. If you prefer, you can also email me or chat directly over whatsapp.
               </p>
             </div>
 
             <form
-              name="contact"
-              method="POST"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
+              ref={formRef}
+              onSubmit={handleSubmit}
               className="space-y-5"
             >
-              <input type="hidden" name="form-name" value="contact" />
-              <input type="hidden" name="bot-field" />
-
               <label className="block text-sm text-gray-300">
                 <span className="mb-2 inline-block text-sm font-medium">Name</span>
                 <input
@@ -75,10 +102,16 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="w-full rounded-[24px] bg-cyan-500 px-6 py-4 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400"
+                disabled={isSending}
+                className="w-full rounded-[24px] bg-cyan-500 px-6 py-4 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                Send message
+                {isSending ? 'Sending...' : 'Send message'}
               </button>
+              {statusMessage && (
+                <div className="rounded-2xl border border-cyan-500/20 bg-cyan-500/10 px-4 py-3 text-sm text-cyan-100">
+                  {statusMessage}
+                </div>
+              )}
             </form>
           </div>
 
