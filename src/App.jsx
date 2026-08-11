@@ -58,16 +58,12 @@ function App() {
   const toggleTheme = () => setTheme((current) => (current === 'dark' ? 'light' : 'dark'));
 
   return (
-    <div className="theme-transition bg-slate-950 text-white relative overflow-hidden">
-      <div className="pointer-events-none fixed inset-x-0 top-16 h-1 z-50 bg-slate-950">
+    <div className="theme-transition bg-black text-white relative overflow-hidden">
+      <div className="pointer-events-none fixed inset-x-0 top-16 h-1 z-50 bg-black">
         <div
           className="h-full bg-gradient-to-r from-cyan-400 via-violet-400 to-sky-400 transition-[width] duration-150"
           style={{ width: `${scrollProgress}%` }}
         />
-      </div>
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-72 overflow-hidden">
-        <div className="absolute left-1/4 top-10 h-72 w-72 rounded-full bg-cyan-400 opacity-20 blur-3xl animate-blob" />
-        <div className="absolute right-1/4 top-16 h-72 w-72 rounded-full bg-violet-500 opacity-15 blur-3xl animate-blob animation-delay-2000" />
       </div>
       <Navbar theme={theme} onToggleTheme={toggleTheme} activeSection={activeSection} />
       <div className="hidden xl:flex z-40 flex-col items-center gap-4" style={{ position: 'fixed', right: '1.5rem', top: '50%', transform: 'translateY(-50%)' }}>
