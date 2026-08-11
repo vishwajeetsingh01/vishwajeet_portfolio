@@ -16,7 +16,7 @@ This portfolio follows **enterprise software engineering principles**:
 
 View the deployed portfolio here:
 
-[https://vishwajeetsingh.vercel.app/](https://vishwajeetsingh.vercel.app/)
+[https://vishwajeetsingh.vercel.app](https://vishwajeetsingh.vercel.app)
 
 ![Homepage screenshot](./screenshots/homepage.png)
 
