@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
@@ -11,9 +12,25 @@ import ScrollToTop from './components/ScrollToTop';
 import WhatsAppButton from './components/WhatsAppButton';
 
 function App() {
+  const [theme, setTheme] = useState('dark');
+
+  useEffect(() => {
+    const stored = window.localStorage.getItem('portfolio-theme');
+    const preferred = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    setTheme(preferred);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.classList.remove('light', 'dark');
+    document.documentElement.classList.add(theme);
+    window.localStorage.setItem('portfolio-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((current) => (current === 'dark' ? 'light' : 'dark'));
+
   return (
-    <div className="bg-slate-950 text-white">
-      <Navbar />
+    <div className="theme-transition bg-slate-950 text-white">
+      <Navbar theme={theme} onToggleTheme={toggleTheme} />
       <Home />
       <About />
       <Skills />

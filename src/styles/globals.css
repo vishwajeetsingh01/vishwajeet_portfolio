@@ -58,6 +58,62 @@ button, a, input, textarea {
   transition: all 150ms ease-out;
 }
 
+.theme-transition {
+  transition: background-color 250ms ease, color 250ms ease;
+}
+
+.light {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+.light body {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+.light .bg-slate-950,
+.light .bg-slate-950\/95 {
+  background-color: #e2e8f0 !important;
+}
+
+.light .bg-slate-900,
+.light .bg-slate-900\/95 {
+  background-color: #cbd5e1 !important;
+}
+
+.light .bg-slate-800,
+.light .bg-slate-800\/95 {
+  background-color: #e2e8f0 !important;
+}
+
+.light .text-gray-200,
+.light .text-gray-300,
+.light .text-gray-400,
+.light .text-white {
+  color: #0f172a !important;
+}
+
+.light .border-slate-700 {
+  border-color: #94a3b8 !important;
+}
+
+.light .border-slate-800 {
+  border-color: #cbd5e1 !important;
+}
+
+.light .text-cyan-400 {
+  color: #0ea5e9 !important;
+}
+
+.light .bg-cyan-500 {
+  background-color: #22d3ee !important;
+}
+
+.light .hover\:bg-cyan-600:hover {
+  background-color: #38bdf8 !important;
+}
+
 /* Focus visible styles for accessibility */
 :focus-visible {
   outline: 2px solid #06b6d4;
