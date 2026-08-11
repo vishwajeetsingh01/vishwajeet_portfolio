@@ -1,4 +1,7 @@
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+
 export default function Skills() {
+  const { ref, isVisible } = useIntersectionObserver();
   const skillCategories = [
     {
       title: 'Generative AI',
@@ -40,7 +43,7 @@ export default function Skills() {
 
   return (
     <section id="skills" className="py-24 px-6 bg-slate-950">
-      <div className="max-w-6xl mx-auto">
+      <div ref={ref} className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <h2 className="text-4xl font-bold mb-14 text-center text-cyan-400">
           Skills & Expertise
         </h2>

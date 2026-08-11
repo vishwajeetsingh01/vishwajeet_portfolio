@@ -1,4 +1,7 @@
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+
 export default function Experience() {
+  const { ref, isVisible } = useIntersectionObserver();
   const experiences = [
     {
       period: 'Jun 2024 – Present',
@@ -32,7 +35,7 @@ export default function Experience() {
 
   return (
     <section id="experience" className="py-24 px-6 bg-slate-950">
-      <div className="max-w-6xl mx-auto">
+      <div ref={ref} className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="text-center mb-14">
           <h2 className="text-4xl font-bold mb-8 text-cyan-400">Experience</h2>
           <p className="max-w-3xl mx-auto text-gray-400 text-lg mb-10">

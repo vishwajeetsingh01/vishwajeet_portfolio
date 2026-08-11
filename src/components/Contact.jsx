@@ -1,7 +1,11 @@
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+
 export default function Contact() {
+  const { ref, isVisible } = useIntersectionObserver();
+
   return (
     <section id="contact" className="w-full flex min-h-[calc(100vh-4rem)] items-center justify-center px-6 bg-slate-950">
-      <div className="w-full max-w-4xl mx-auto text-center py-12 md:py-24">
+      <div ref={ref} className={`w-full max-w-4xl mx-auto text-center py-12 md:py-24 transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
 
         <h2 className="text-4xl font-bold mb-8 text-cyan-400">
           Contact Me
