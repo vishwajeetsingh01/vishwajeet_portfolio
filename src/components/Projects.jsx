@@ -7,43 +7,50 @@ export default function Projects() {
       id: 'A',
       title: 'Intelligent Field Assistant',
       description: 'Multimodal RAG chatbot for field operators using Python, LangChain, Azure Blob Storage, and HANA Vector DB.',
+      impact: 'Reduced field support time through fast context-aware troubleshooting and asset lookup.',
       tags: ['Python', 'LangChain', 'Azure Blob', 'HANA Vector DB'],
-      link: 'https://github.com/vishwajeetsingh01'
+      github: 'https://github.com/vishwajeetsingh01'
     },
     {
       id: 'O',
       title: 'Smart Order Automation',
       description: 'AI-powered email order extraction system reducing manual effort using Generative AI workflows.',
+      impact: 'Cut order processing time by automating invoice parsing and data entry tasks.',
       tags: ['Generative AI', 'Python', 'Automation', 'Email Parsing'],
-      link: 'https://github.com/vishwajeetsingh01'
+      github: 'https://github.com/vishwajeetsingh01'
     },
     {
       id: 'E',
       title: 'Employee Assistant Using LLM Agent',
       description: 'Intelligent HR assistant integrated with SAP SuccessFactors and AI agents for employee automation.',
+      impact: 'Improved employee support by answering HR queries and automating routine tasks.',
       tags: ['LLM Agent', 'SAP SuccessFactors', 'AI Automation', 'Chatbot'],
-      link: 'https://github.com/vishwajeetsingh01'
+      github: 'https://github.com/vishwajeetsingh01',
+      demo: 'https://example.com/employee-assistant'
     },
     {
       id: 'C',
       title: 'GenAI Driven IWM Chatbot',
       description: 'Context-aware enterprise chatbot with dynamic SQL generation, prompt chaining, and historical context analysis.',
+      impact: 'Enabled faster data retrieval and decision support with conversational analytics.',
       tags: ['GenAI', 'RAG', 'Prompt Chaining', 'SQL'],
-      link: 'https://github.com/vishwajeetsingh01/IWM_Chatbot'
+      github: 'https://github.com/vishwajeetsingh01/IWM_Chatbot'
     },
     {
       id: 'P',
       title: 'Power BI Dashboard',
       description: 'Interactive analytics dashboard with sales and operational insights, built using Power BI and real-time data modeling.',
+      impact: 'Delivered executive visibility by consolidating KPIs into a single dashboard.',
       tags: ['Power BI', 'DAX', 'Azure SQL', 'Dashboard'],
-      link: 'https://github.com/vishwajeetsingh01'
+      github: 'https://github.com/vishwajeetsingh01'
     },
     {
       id: 'D',
       title: 'Data Engineering Pipeline',
       description: 'End-to-end ETL pipeline for data ingestion, transformation, and analytics using Python, SQL, and cloud data services.',
+      impact: 'Provided a reliable data foundation with automated daily processing for analytics.',
       tags: ['Python', 'SQL', 'ETL', 'Cloud'],
-      link: 'https://github.com/vishwajeetsingh01'
+      github: 'https://github.com/vishwajeetsingh01'
     }
   ];
 
@@ -57,11 +64,8 @@ export default function Projects() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {projects.map((project) => (
-            <a
+            <article
               key={project.id}
-              href={project.link}
-              target="_blank"
-              rel="noreferrer"
               className="group block bg-slate-800 p-8 rounded-3xl border border-slate-700 shadow-[0_20px_50px_-20px_rgba(15,23,42,0.45),0_-10px_30px_-25px_rgba(15,23,42,0.2)] transition transform duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:bg-slate-700 hover:border-cyan-400 hover:shadow-[0_20px_60px_-25px_rgba(6,182,212,0.8),0_-10px_40px_-30px_rgba(6,182,212,0.25)]"
             >
               <h3 className="text-2xl font-bold mb-4 flex items-center gap-3 group-hover:text-cyan-400">
@@ -75,6 +79,10 @@ export default function Projects() {
                 {project.description}
               </p>
 
+              <p className="mt-4 text-sm text-cyan-200 font-semibold">
+                Impact: {project.impact}
+              </p>
+
               <div className="mt-4 flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
                   <span key={tag} className="inline-flex rounded-full border border-slate-600 px-3 py-1 text-sm text-gray-300">
@@ -83,11 +91,17 @@ export default function Projects() {
                 ))}
               </div>
 
-              <div className="mt-8 inline-flex items-center gap-2 text-cyan-400 font-semibold group-hover:text-cyan-200">
-                Open project
-                <span className="text-xl">→</span>
+              <div className="mt-8 flex justify-end">
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sm text-cyan-400 font-semibold transition hover:text-cyan-200"
+                >
+                  Open project →
+                </a>
               </div>
-            </a>
+            </article>
           ))}
         </div>
       </div>
