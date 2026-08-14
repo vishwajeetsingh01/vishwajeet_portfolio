@@ -285,7 +285,7 @@ This project is open source and available under the MIT License.
 ## 👤 Author
 
 **Vishwajeet Singh**
-- Email: vishwajeetsinghlife@gmail.com
+- Email: vishwajeetsinghmnnit@gmail.com
 - GitHub: [vishwajeetsingh01](https://github.com/vishwajeetsingh01)
 - LinkedIn: [vishwajeetsingh-](https://linkedin.com/in/vishwajeetsingh-)
 
