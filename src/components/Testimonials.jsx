@@ -13,8 +13,8 @@ const testimonials = [
   },
   {
     quote: 'A dedicated learner who consistently brings creativity and precision to technical work. Excellent teamwork and a great attitude in hackathons.',
-    name: 'Prof. Rajesh Tripathi',
-    role: 'MNNIT Faculty',
+    name: 'Hanumanth Kulkarni',
+    role: 'Incture L&D Mentor',
   }
 ];
 
