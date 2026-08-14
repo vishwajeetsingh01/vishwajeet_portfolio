@@ -6,9 +6,10 @@ export default function Navbar({ theme, onToggleTheme, activeSection }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed inset-x-0 top-0 bg-slate-950/95 backdrop-blur-sm border-b border-slate-800 shadow-lg z-50">
+    <header className="fixed inset-x-0 top-0 z-50">
+      <nav role="navigation" aria-label="Main Navigation" className="bg-slate-950/95 backdrop-blur-sm border-b border-slate-800 shadow-lg">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="#home" className="flex items-center gap-2">
+        <a href="#home" aria-current={activeSection === 'home' ? 'page' : undefined} className="flex items-center gap-2">
           <img
             src={profilePhoto}
             alt="Vishwajeet Singh"
@@ -26,6 +27,7 @@ export default function Navbar({ theme, onToggleTheme, activeSection }) {
               <a
                 key={nav.id}
                 href={`#${nav.id}`}
+                aria-current={isActive ? 'page' : undefined}
                 className={`transition-colors text-sm md:text-base py-3 px-2 rounded-lg ${isActive ? 'text-cyan-300 underline underline-offset-4 decoration-cyan-400' : 'hover:text-cyan-400'}`}
               >
                 {nav.label}
@@ -78,6 +80,7 @@ export default function Navbar({ theme, onToggleTheme, activeSection }) {
                   key={nav.id}
                   href={`#${nav.id}`}
                   onClick={() => setOpen(false)}
+                  aria-current={isActive ? 'page' : undefined}
                   className={`block text-left text-lg py-4 px-3 rounded-lg ${isActive ? 'text-cyan-300 underline underline-offset-4 decoration-cyan-400' : 'text-gray-200 hover:text-cyan-400'}`}
                 >
                   {nav.label}
@@ -87,6 +90,7 @@ export default function Navbar({ theme, onToggleTheme, activeSection }) {
           </div>
         </div>
       </div>
-    </nav>
+      </nav>
+    </header>
   );
 }

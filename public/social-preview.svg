@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0f172a" />
+  <rect x="40" y="40" width="1120" height="550" rx="28" fill="url(#g)" opacity="0.08" />
+
+  <g transform="translate(80,120)">
+    <text x="0" y="0" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial" font-size="48" fill="#cbd5e1">Vishwajeet Singh</text>
+    <text x="0" y="70" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial" font-size="40" font-weight="700" fill="#ffffff">AI & Data Portfolio</text>
+
+    <text x="0" y="150" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial" font-size="22" fill="#94a3b8">
+      Building intelligent systems combining Generative AI, automation, analytics, and cloud-native architecture.
+    </text>
+
+    <g transform="translate(0,220)">
+      <rect x="0" y="0" width="420" height="56" rx="12" fill="#06b6d4" />
+      <text x="30" y="36" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial" font-size="20" fill="#0f172a">View projects & case studies</text>
+    </g>
+  </g>
+
+  <g transform="translate(880,520)">
+    <text x="0" y="0" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial" font-size="16" fill="#94a3b8">vishwajeetsingh.vercel.app</text>
+  </g>
+</svg>

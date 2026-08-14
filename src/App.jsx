@@ -13,6 +13,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import WhatsAppButton from './components/WhatsAppButton';
+import CookieConsent from './components/CookieConsent';
 
 function App() {
   const [theme, setTheme] = useState('dark');
@@ -59,6 +60,12 @@ function App() {
 
   return (
     <div className="theme-transition bg-black text-white relative overflow-hidden">
+      <a
+        href="#main-content"
+        className="absolute -top-10 left-4 z-50 rounded bg-cyan-500 px-3 py-2 text-sm font-semibold text-slate-950 transition-all focus:top-4 focus:outline-none"
+      >
+        Skip to main content
+      </a>
       <div className="pointer-events-none fixed inset-x-0 top-16 h-1 z-50 bg-black">
         <div
           className="h-full bg-gradient-to-r from-cyan-400 via-violet-400 to-sky-400 transition-[width] duration-150"
@@ -84,17 +91,20 @@ function App() {
           );
         })}
       </div>
-      <Home />
-      <About />
-      <Skills />
-      <Projects />
-      <Experience />
-      <Blog />
-      <Testimonials />
-      <Education />
-      <Contact />
+      <main id="main-content" tabIndex="-1">
+        <Home />
+        <About />
+        <Skills />
+        <Projects />
+        <Experience />
+        <Blog />
+        <Testimonials />
+        <Education />
+        <Contact />
+      </main>
       <ScrollToTop />
       <WhatsAppButton />
+      <CookieConsent />
       <Footer />
     </div>
   );

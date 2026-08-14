@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Prevent crawling of environment files or build artifacts (adjust as needed)
+Disallow: /node_modules/
+Disallow: /dist/
+
+Sitemap: https://vishwajeetsingh.vercel.app/sitemap.xml
+Host: https://vishwajeetsingh.vercel.app

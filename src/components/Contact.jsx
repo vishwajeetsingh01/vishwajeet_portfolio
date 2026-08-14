@@ -8,15 +8,17 @@ export default function Contact() {
   const [statusMessage, setStatusMessage] = useState('');
   const [isSending, setIsSending] = useState(false);
 
-  const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_contact';
-  const contactTemplateID = 'template_contact_form';
-  const autoReplyTemplateID = 'template_auto_reply';
-  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'KEYABu-HLotFE_6do';
+  // Read EmailJS configuration from environment variables only.
+  // Do NOT provide default values here to avoid leaking secrets in source control.
+  const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const contactTemplateID = import.meta.env.VITE_EMAILJS_CONTACT_TEMPLATE_ID;
+  const autoReplyTemplateID = import.meta.env.VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID;
+  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!serviceID || !contactTemplateID || !autoReplyTemplateID || !publicKey) {
-      setStatusMessage('EmailJS is not configured yet. Please provide the required keys.');
+      setStatusMessage('Email service is not configured. Please set VITE_EMAILJS_* environment variables.');
       return;
     }
     setIsSending(true);
