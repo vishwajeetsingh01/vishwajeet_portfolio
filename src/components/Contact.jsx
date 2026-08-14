@@ -7,7 +7,7 @@ export default function Contact() {
   const formRef = useRef(null);
   const [statusMessage, setStatusMessage] = useState('');
   const [isSending, setIsSending] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
   const [errors, setErrors] = useState({});
 
   // Read EmailJS configuration from environment variables only.
@@ -24,6 +24,13 @@ export default function Contact() {
     const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!form.email || !emailRe.test(form.email)) next.email = 'Please enter a valid email address.';
     if (!form.message || !form.message.trim()) next.message = 'Please enter a message.';
+    // phone is required
+    if (!form.phone || !form.phone.trim()) {
+      next.phone = 'Please enter your mobile number.';
+    } else {
+      const phoneRe = /^\+?[0-9\s\-()]{7,}$/;
+      if (!phoneRe.test(form.phone)) next.phone = 'Please enter a valid phone number.';
+    }
     return next;
   };
 
@@ -55,7 +62,7 @@ export default function Contact() {
       await emailjs.sendForm(serviceID, contactTemplateID, formRef.current, publicKey);
       await emailjs.sendForm(serviceID, autoReplyTemplateID, formRef.current, publicKey);
       setStatusMessage('Message sent successfully! I will reply soon.');
-      setForm({ name: '', email: '', message: '' });
+      setForm({ name: '', email: '', phone: '', message: '' });
       setErrors({});
       formRef.current.reset();
     } catch (error) {
@@ -100,33 +107,54 @@ export default function Contact() {
               className="space-y-5"
             >
               <label className="block text-sm text-gray-300">
-                <span className="mb-2 inline-block text-sm font-medium">Name</span>
+                <span className="mb-2 inline-block text-sm font-medium">Name <span className="text-red-400">*</span></span>
                 <input
                   type="text"
                   name="name"
+                  required
+                  aria-required="true"
                   value={form.name}
                   onChange={(e) => { setForm((s) => ({ ...s, name: e.target.value })); if (errors.name) setErrors((s) => ({ ...s, name: undefined })); }}
                   aria-invalid={errors.name ? 'true' : 'false'}
                   aria-describedby={errors.name ? 'name-error' : undefined}
-                  className="w-full rounded-[24px] border border-slate-700 bg-slate-950 px-4 py-3 text-white placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
+                  className="w-full rounded-[24px] border border-slate-700 bg-slate-950 px-4 py-3 text-white placeholder:text-slate-500 focus:border-cyan-400 focus-visible:ring-2 focus-visible:ring-cyan-400 focus:ring-2 focus:ring-cyan-400/20"
                   placeholder="Your name"
                 />
                 {errors.name && <div id="name-error" className="mt-2 text-sm text-red-400">{errors.name}</div>}
               </label>
 
               <label className="block text-sm text-gray-300">
-                <span className="mb-2 inline-block text-sm font-medium">Email</span>
+                <span className="mb-2 inline-block text-sm font-medium">Email <span className="text-red-400">*</span></span>
                 <input
                   type="email"
                   name="email"
+                  required
+                  aria-required="true"
                   value={form.email}
                   onChange={(e) => { setForm((s) => ({ ...s, email: e.target.value })); if (errors.email) setErrors((s) => ({ ...s, email: undefined })); }}
                   aria-invalid={errors.email ? 'true' : 'false'}
                   aria-describedby={errors.email ? 'email-error' : undefined}
-                  className="w-full rounded-[24px] border border-slate-700 bg-slate-950 px-4 py-3 text-white placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
+                  className="w-full rounded-[24px] border border-slate-700 bg-slate-950 px-4 py-3 text-white placeholder:text-slate-500 focus:border-cyan-400 focus-visible:ring-2 focus-visible:ring-cyan-400 focus:ring-2 focus:ring-cyan-400/20"
                   placeholder="you@example.com"
                 />
                 {errors.email && <div id="email-error" className="mt-2 text-sm text-red-400">{errors.email}</div>}
+              </label>
+
+              <label className="block text-sm text-gray-300">
+                <span className="mb-2 inline-block text-sm font-medium">Mobile <span className="text-red-400">*</span></span>
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  aria-required="true"
+                  value={form.phone}
+                  onChange={(e) => { setForm((s) => ({ ...s, phone: e.target.value })); if (errors.phone) setErrors((s) => ({ ...s, phone: undefined })); }}
+                  aria-invalid={errors.phone ? 'true' : 'false'}
+                  aria-describedby={errors.phone ? 'phone-error' : undefined}
+                  className="w-full rounded-[24px] border border-slate-700 bg-slate-950 px-4 py-3 text-white placeholder:text-slate-500 focus:border-cyan-400 focus-visible:ring-2 focus-visible:ring-cyan-400 focus:ring-2 focus:ring-cyan-400/20"
+                  placeholder="e.g. +91 81234 56789"
+                />
+                {errors.phone && <div id="phone-error" className="mt-2 text-sm text-red-400">{errors.phone}</div>}
               </label>
 
               <label className="block text-sm text-gray-300">
@@ -138,7 +166,7 @@ export default function Contact() {
                   aria-invalid={errors.message ? 'true' : 'false'}
                   aria-describedby={errors.message ? 'message-error' : undefined}
                   rows="5"
-                  className="w-full rounded-[24px] border border-slate-700 bg-slate-950 px-4 py-3 text-white placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
+                  className="w-full rounded-[24px] border border-slate-700 bg-slate-950 px-4 py-3 text-white placeholder:text-slate-500 focus:border-cyan-400 focus-visible:ring-2 focus-visible:ring-cyan-400 focus:ring-2 focus:ring-cyan-400/20"
                   placeholder="Tell me about your project, timeline, or goals..."
                 />
                 {errors.message && <div id="message-error" className="mt-2 text-sm text-red-400">{errors.message}</div>}

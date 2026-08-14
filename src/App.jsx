@@ -62,7 +62,7 @@ function App() {
     <div className="theme-transition bg-black text-white relative overflow-hidden">
       <a
         href="#main-content"
-        className="absolute -top-10 left-4 z-50 rounded bg-cyan-500 px-3 py-2 text-sm font-semibold text-slate-950 transition-all focus:top-4 focus:outline-none"
+        className="absolute -top-10 left-4 z-50 rounded bg-cyan-500 px-3 py-2 text-sm font-semibold text-slate-950 transition-all focus:top-4 focus-visible:ring-2 focus-visible:ring-cyan-400"
       >
         Skip to main content
       </a>
