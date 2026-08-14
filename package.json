@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "optimize:images": "node scripts/optimize-images.cjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -25,6 +26,9 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.5.0",
     "postcss": "^8.5.14",
+    "rollup-plugin-visualizer": "^7.1.1",
+    "sharp": "^0.35.3",
+    "source-map-explorer": "^2.5.3",
     "tailwindcss": "^3.4.1",
     "vite": "^8.0.10"
   }

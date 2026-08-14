@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import profilePhoto from '../assets/profile.jpg';
+import profilePhoto from '../assets/profile-80.jpg';
+import profileWebp from '../assets/profile.webp';
+import profileAvif from '../assets/profile.avif';
 import { NAVIGATION } from '../constants/portfolio';
 
 export default function Navbar({ theme, onToggleTheme, activeSection }) {
@@ -10,13 +12,19 @@ export default function Navbar({ theme, onToggleTheme, activeSection }) {
       <nav role="navigation" aria-label="Main Navigation" className="bg-slate-950/95 backdrop-blur-sm border-b border-slate-800 shadow-lg">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <a href="#home" aria-current={activeSection === 'home' ? 'page' : undefined} className="flex items-center gap-2">
-          <img
-            src={profilePhoto}
-            alt="Vishwajeet Singh"
-            loading="lazy"
-            className="w-10 h-10 rounded-full border-2 border-cyan-400 object-cover"
-            decoding="async"
-          />
+          <picture>
+            <source type="image/avif" srcSet={profileAvif} />
+            <source type="image/webp" srcSet={profileWebp} />
+            <img
+              src={profilePhoto}
+              alt="Vishwajeet Singh"
+              loading="lazy"
+              width="40"
+              height="40"
+              className="w-10 h-10 rounded-full border-2 border-cyan-400 object-cover"
+              decoding="async"
+            />
+          </picture>
           <span className="text-base font-bold text-cyan-400 inline-block md:text-lg">Vishwajeet Singh</span>
         </a>
 

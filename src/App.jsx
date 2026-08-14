@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import { NAVIGATION } from './constants/portfolio';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
@@ -6,8 +6,8 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Experience from './components/Experience';
-import Blog from './components/Blog';
-import Testimonials from './components/Testimonials';
+const Blog = lazy(() => import('./components/Blog'));
+const Testimonials = lazy(() => import('./components/Testimonials'));
 import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -97,8 +97,12 @@ function App() {
         <Skills />
         <Projects />
         <Experience />
-        <Blog />
-        <Testimonials />
+        <Suspense fallback={<div role="status" aria-live="polite" className="py-12 text-center text-sm text-gray-400">Loading blog...</div>}>
+          <Blog />
+        </Suspense>
+        <Suspense fallback={<div role="status" aria-live="polite" className="py-12 text-center text-sm text-gray-400">Loading testimonials...</div>}>
+          <Testimonials />
+        </Suspense>
         <Education />
         <Contact />
       </main>
