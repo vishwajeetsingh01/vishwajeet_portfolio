@@ -91,7 +91,7 @@ function App() {
           );
         })}
       </div>
-      <main id="main-content" tabIndex="-1">
+      <main id="main-content" tabIndex="-1" role="main" aria-label="Main Content">
         <Home />
         <About />
         <Skills />

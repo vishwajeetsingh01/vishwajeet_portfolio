@@ -50,7 +50,7 @@ export default function Skills() {
   ];
 
   return (
-    <section id="skills" className="py-24 px-6 bg-slate-950">
+    <section id="skills" aria-label="Skills" className="py-24 px-6 bg-slate-950">
       <div ref={ref} className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <h2 className="text-4xl font-bold mb-14 text-center text-cyan-400">
           Skills & Expertise

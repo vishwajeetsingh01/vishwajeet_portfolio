@@ -79,7 +79,7 @@ export default function Home() {
   }, [isVisible]);
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center text-center px-6 bg-slate-950">
+    <section id="home" aria-label="Home" className="min-h-screen flex items-center justify-center text-center px-6 bg-slate-950">
       <div>
         <h1 
           ref={ref}
@@ -90,9 +90,11 @@ export default function Home() {
 
         <p 
           className={`text-3xl md:text-5xl text-gray-300 font-semibold mb-8 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+          aria-live="polite"
+          aria-atomic="true"
         >
             {displayedSubtitle}
-          <span className="text-cyan-400">{displayedSubtitle.length < HERO_PHRASES[currentPhraseIndex].length ? '|' : ''}</span>
+          <span className="text-cyan-400" aria-hidden="true">{displayedSubtitle.length < HERO_PHRASES[currentPhraseIndex].length ? '|' : ''}</span>
         </p>
 
         <p 

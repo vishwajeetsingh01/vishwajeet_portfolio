@@ -78,7 +78,7 @@ export default function Education() {
   }, [positions]);
 
   return (
-    <section id="education" className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 bg-slate-900">
+    <section id="education" aria-label="Education" className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 bg-slate-900">
       <div ref={ref} className={`max-w-6xl mx-auto py-24 transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <h2 className="text-4xl font-bold mb-14 text-center text-cyan-400" ref={ref}>
           My Educational Roadmap

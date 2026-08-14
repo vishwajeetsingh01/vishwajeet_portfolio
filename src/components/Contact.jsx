@@ -7,6 +7,8 @@ export default function Contact() {
   const formRef = useRef(null);
   const [statusMessage, setStatusMessage] = useState('');
   const [isSending, setIsSending] = useState(false);
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [errors, setErrors] = useState({});
 
   // Read EmailJS configuration from environment variables only.
   // Do NOT provide default values here to avoid leaking secrets in source control.
@@ -15,19 +17,46 @@ export default function Contact() {
   const autoReplyTemplateID = import.meta.env.VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID;
   const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
+  const validate = () => {
+    const next = {};
+    if (!form.name || !form.name.trim()) next.name = 'Please enter your name.';
+    // basic email regex
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!form.email || !emailRe.test(form.email)) next.email = 'Please enter a valid email address.';
+    if (!form.message || !form.message.trim()) next.message = 'Please enter a message.';
+    return next;
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const nextErrors = validate();
+    if (Object.keys(nextErrors).length) {
+      setErrors(nextErrors);
+      setStatusMessage('Please fix the errors in the form.');
+      // focus first invalid field
+      requestAnimationFrame(() => {
+        const first = formRef.current && formRef.current.querySelector('[aria-invalid="true"]');
+        first && first.focus();
+      });
+      return;
+    }
+
     if (!serviceID || !contactTemplateID || !autoReplyTemplateID || !publicKey) {
       setStatusMessage('Email service is not configured. Please set VITE_EMAILJS_* environment variables.');
       return;
     }
+
     setIsSending(true);
     setStatusMessage('Sending message...');
 
     try {
+      // copy form values into hidden inputs if needed by emailjs (we rely on name attributes already present)
       await emailjs.sendForm(serviceID, contactTemplateID, formRef.current, publicKey);
       await emailjs.sendForm(serviceID, autoReplyTemplateID, formRef.current, publicKey);
       setStatusMessage('Message sent successfully! I will reply soon.');
+      setForm({ name: '', email: '', message: '' });
+      setErrors({});
       formRef.current.reset();
     } catch (error) {
       console.error('EmailJS send error:', error);
@@ -38,7 +67,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-slate-950 px-4 py-24 sm:px-6 lg:px-8">
+    <section id="contact" aria-label="Contact" className="relative overflow-hidden bg-slate-950 px-4 py-24 sm:px-6 lg:px-8">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-cyan-500/20 to-transparent" />
       <div className="pointer-events-none absolute right-0 top-16 hidden h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl lg:block" />
 
@@ -67,6 +96,7 @@ export default function Contact() {
             <form
               ref={formRef}
               onSubmit={handleSubmit}
+              noValidate
               className="space-y-5"
             >
               <label className="block text-sm text-gray-300">
@@ -74,10 +104,14 @@ export default function Contact() {
                 <input
                   type="text"
                   name="name"
-                  required
+                  value={form.name}
+                  onChange={(e) => { setForm((s) => ({ ...s, name: e.target.value })); if (errors.name) setErrors((s) => ({ ...s, name: undefined })); }}
+                  aria-invalid={errors.name ? 'true' : 'false'}
+                  aria-describedby={errors.name ? 'name-error' : undefined}
                   className="w-full rounded-[24px] border border-slate-700 bg-slate-950 px-4 py-3 text-white placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
                   placeholder="Your name"
                 />
+                {errors.name && <div id="name-error" className="mt-2 text-sm text-red-400">{errors.name}</div>}
               </label>
 
               <label className="block text-sm text-gray-300">
@@ -85,21 +119,29 @@ export default function Contact() {
                 <input
                   type="email"
                   name="email"
-                  required
+                  value={form.email}
+                  onChange={(e) => { setForm((s) => ({ ...s, email: e.target.value })); if (errors.email) setErrors((s) => ({ ...s, email: undefined })); }}
+                  aria-invalid={errors.email ? 'true' : 'false'}
+                  aria-describedby={errors.email ? 'email-error' : undefined}
                   className="w-full rounded-[24px] border border-slate-700 bg-slate-950 px-4 py-3 text-white placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
                   placeholder="you@example.com"
                 />
+                {errors.email && <div id="email-error" className="mt-2 text-sm text-red-400">{errors.email}</div>}
               </label>
 
               <label className="block text-sm text-gray-300">
                 <span className="mb-2 inline-block text-sm font-medium">Message</span>
                 <textarea
                   name="message"
-                  required
+                  value={form.message}
+                  onChange={(e) => { setForm((s) => ({ ...s, message: e.target.value })); if (errors.message) setErrors((s) => ({ ...s, message: undefined })); }}
+                  aria-invalid={errors.message ? 'true' : 'false'}
+                  aria-describedby={errors.message ? 'message-error' : undefined}
                   rows="5"
                   className="w-full rounded-[24px] border border-slate-700 bg-slate-950 px-4 py-3 text-white placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
                   placeholder="Tell me about your project, timeline, or goals..."
                 />
+                {errors.message && <div id="message-error" className="mt-2 text-sm text-red-400">{errors.message}</div>}
               </label>
 
               <button
@@ -110,7 +152,7 @@ export default function Contact() {
                 {isSending ? 'Sending...' : 'Send message'}
               </button>
               {statusMessage && (
-                <div className="rounded-2xl border border-cyan-500/20 bg-cyan-500/10 px-4 py-3 text-sm text-cyan-100">
+                <div className="rounded-2xl border border-cyan-500/20 bg-cyan-500/10 px-4 py-3 text-sm text-cyan-100" aria-live="polite" aria-atomic="true">
                   {statusMessage}
                 </div>
               )}

@@ -13,6 +13,7 @@ export default function Navbar({ theme, onToggleTheme, activeSection }) {
           <img
             src={profilePhoto}
             alt="Vishwajeet Singh"
+            loading="lazy"
             className="w-10 h-10 rounded-full border-2 border-cyan-400 object-cover"
             decoding="async"
           />

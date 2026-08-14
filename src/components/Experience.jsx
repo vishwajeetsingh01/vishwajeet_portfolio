@@ -34,7 +34,7 @@ export default function Experience() {
   ];
 
   return (
-    <section id="experience" className="py-24 px-6 bg-slate-950">
+    <section id="experience" aria-label="Experience" className="py-24 px-6 bg-slate-950">
       <div ref={ref} className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="text-center mb-14">
           <h2 className="text-4xl font-bold mb-8 text-cyan-400">Experience</h2>
